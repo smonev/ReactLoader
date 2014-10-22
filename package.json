@@ -1,0 +1,15 @@
+{
+  "name": "ReactLoadingIndicator",
+  "version": "0.2.0",
+  "description": "Loading indicator built with React.js",
+  "repository": {
+    "type": "git",
+    "url": "todo"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.9",
+    "gulp-autoprefixer": "0.0.8",
+    "gulp-react": "^1.0.2",
+    "gulp-sass": "^0.7.2"
+  }
+}
