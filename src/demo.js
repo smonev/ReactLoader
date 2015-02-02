@@ -1,21 +1,15 @@
 /** @jsx React.DOM */
 
 var PageView = React.createClass({
-  getInitialState: function() {
-    return {
-      startLoader: false
-    };
-  },
-
   startLoader: function() {
-      this.setState({startLoader: true}); 
+      this.refs.pageLoader.animate();
   },
 
   render: function () {
     return (
       <div>
-          <PageLoader show={this.state.startLoader}/>
-          <input type="button" onClick={this.startLoader} value="Fire Loader"></input>
+            <PageLoader ref="pageLoader" />
+            <input type="button" onClick={this.startLoader} value="Fire Loader"></input>
       </div>
     );
   }
@@ -24,12 +18,12 @@ var PageView = React.createClass({
 var PageLoader = React.createClass({
   getInitialState: function() {
     var innerWidth = window.innerWidth;
+
     return {
-      loaderWidth: innerWidth,
-      loaderLeft: - innerWidth - 20,
-      inAnimation: false,
-      animationId: 0, 
-      pos: 0
+        loaderWidth: innerWidth,
+        loaderLeft: - innerWidth - 20,
+        animationId: 0,
+        pos: 0
     };
   },
 
@@ -37,9 +31,6 @@ var PageLoader = React.createClass({
       var that = this, animationTimer;
       animationTimer = setTimeout(function() {
           var  newLeft;
-          if (!that.state.inAnimation)  {
-            return;
-          }
 
           if (that.state.loaderLeft < 0){
               that.state.animationId = window.requestAnimationFrame(that.animate);
@@ -63,15 +54,10 @@ var PageLoader = React.createClass({
   },
 
   render: function () {
-      if (this.props.show) {
-        if (!this.state.inAnimation) {
-            this.state.inAnimation = true;
-            this.animate();
-        }
-      }
+
       var style = {
           width: this.state.loaderWidth,
-          height: '2px',
+          height: '3px',
           backgroundColor: '#c0392b',
           display: 'block',
           position: 'fixed',
@@ -88,4 +74,4 @@ var PageLoader = React.createClass({
   }
 });
 
-React.renderComponent(<PageView />, document.body);
+React.render(<PageView />, document.body);
